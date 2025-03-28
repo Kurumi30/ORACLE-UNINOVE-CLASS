@@ -102,7 +102,7 @@ INSERT INTO CLI_VEIC VALUES (128, 454, 999, TO_DATE('2023-01-01', 'YYYY-MM-DD'))
 INSERT INTO CLI_VEIC VALUES (220, 902, 321, TO_DATE('2025-08-21', 'YYYY-MM-DD'));
 
 -- 3) Altere o número da marca Hyundai de 1 para 8 na tabela MARCA. A alteração ocorreu com sucesso? Entenda o porquê.
-UPDATE MARCA SET IDMARCA = 8 WHERE NOME = 'Hyundai';
+UPDATE MARCA SET IDMARCA = 8 WHERE IDMARCA = 1;
 -- Ocorreu um erro: restrição de integridade (FERNANDO.MODELO_IDMARCA_FK) violada - registro filho localizado
 -- Porque a coluna IDMARCA da tabela MARCA é chave primária e é referenciada pela coluna IDMARCA da tabela MODELO como chave estrangeira.
 
@@ -114,9 +114,9 @@ INSERT INTO MARCA VALUES (7, 'Peugeot');
 
 -- 6) Utilizando um único comando, exclua as marcas FORD e MITSUBISHI da tabela MARCA. A exclusão ocorreu com sucesso? Entenda o porquê.
 -- DELETE FROM MARCA
---  WHERE DESCRICAO = 'Ford'
---  OR DESCRICAO = 'Mitsubishi';
+--  WHERE IDMARCA = 2
+--  OR IDMARCA = 5;
 
-DELETE FROM MARCA WHERE DESCRICAO IN ('Ford', 'Mitsubishi'); -- Dessa forma fica mais legível
+DELETE FROM MARCA WHERE IDMARCA IN (2, 5); -- Dessa forma fica mais legível
 -- Ocorreu o erro: restrição de integridade (FERNANDO.MODELO_IDMARCA_FK) violada - registro filho localizado
 -- Porque a tabela MARCA está referenciada pela tabela MODELO através da chave estrangeira, ou seja os registros na tabela MARCA dependem de registros na tabela MODELO.
