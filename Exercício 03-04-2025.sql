@@ -32,3 +32,8 @@ INSERT INTO EMP
   (EMPNO, ENAME, JOB, HIREDATE, SAL, DEPTNO)
 VALUES
   (1200, 'Antônio', 'Mecânico', SYSDATE, 2500, 30);
+
+-- 9) Consulte o nome dos empregados, salário e número do departamento da tabela EMP considerando apenas quem foi contratado em 81. Utilize o operador LIKE.
+SELECT ENAME, SAL, DEPTNO
+  FROM EMP
+    WHERE HIREDATE LIKE '%81';
