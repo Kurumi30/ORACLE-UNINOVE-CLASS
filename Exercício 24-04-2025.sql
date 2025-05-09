@@ -1,10 +1,10 @@
 -- 19) Consulte a quantidade de funcionários por departamento da tabela EMP.
-SELECT COUNT(ENAME), DEPTNO
+SELECT DEPTNO, COUNT(*)
 FROM EMP
 GROUP BY DEPTNO;
 
 -- 20) Qual o custo dos empregados por departamento?
-SELECT SUM(SAL), DEPTNO
+SELECT DEPTNO, SUM(SAL)
 FROM EMP
 GROUP BY DEPTNO;
 
@@ -16,14 +16,15 @@ GROUP BY DEPTNO;
 -- 22) Faça uma consulta que apresente o total pago por alunos no ano de 2007 e a média de valores pagos por eles.
 SELECT IDALUNO, SUM(VALLIQ), AVG(VALLIQ)
 FROM PAGTO
-WHERE TO_CHAR(DTPAGTO, 'YYYY') = 2007
+WHERE TO_CHAR(DTPAGTO, 'YYYY') = 2007 -- DTPAGTO LIKE '%07'
 GROUP BY IDALUNO;
 
 -- 23) Consulte quantos pagamentos foram feitos para cada professor no 1o semestre de 2008, classificando por professor.
-SELECT IDPROF, COUNT(IDALUNO)
+SELECT IDPROF, COUNT(*)
 FROM PAGTO
 WHERE DTPAGTO BETWEEN '01/01/2008' AND '30/06/2008'
-GROUP BY IDPROF;
+GROUP BY IDPROF
+ORDER BY IDPROF ASC;
 
 -- 24) Faça uma consulta que apresente todos os alunos matriculados no período de 15/03/08 a 30/04/08, mostrando apenas seu Código, Nome e Data de Nascimento, classificados por Nome. Altere os cabeçalhos para Cód.Aluno, Nome Aluno e Data Nasc, respectivamente.
 SELECT IDALUNO AS "Cód.Aluno", NOME AS "Nome Aluno", DTNASC AS "Data Nasc"
@@ -61,5 +62,5 @@ WHERE IDALUNO = 10194;
 -- 30) Os registros de pagamentos do aluno Pedro Santos foram eliminados, conforme solicitado no exercício 27, porém, houve uma confusão com relação ao nome do aluno. O aluno que saiu da academia foi o Roberto Santos e não o Pedro Santos. Com o objetivo de retornar a situação anterior à exclusão digite o comando abaixo:
 ROLLBACK;
 
--- 31) Verifique o que aconteceu com as operações efetuadas nos exercícios nos 29, 30 e 31 e entenda o porque.
+-- 31) Verifique o que aconteceu com as operações efetuadas nos exercícios nos 27, 28 e 29 e entenda o porque.
 -- O aluno Pedro Santos não foi restaurado, porque teve um comando de alter table depois, o que fez um commit automático. Já o aluno Carlos teve a sua data de nascimento antiga.
