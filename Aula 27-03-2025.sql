@@ -13,3 +13,5 @@ COMMIT -- efetiva transações pendentes
 -- 4) SELECT
 -- 5) HAVING
 -- 6) ORDER BY
+
+-- ON -> Definir a junção por meio de colunas coincidentes
